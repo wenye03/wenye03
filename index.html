@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康医疗 - Vision OS应用</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        .section {
+            margin-bottom: 4rem;
+        }
+        .app-frame {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            width: 1280px;
+            height: 720px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* 脉冲动画 */
+        .pulse-animation {
+            position: relative;
+        }
+        .pulse-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(239, 68, 68, 0.5);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 图表样式 */
+        .chart-line {
+            fill: none;
+            stroke-width: 2;
+        }
+        .chart-area {
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-4">健康医疗</h1>
+            <p class="text-xl max-w-2xl mx-auto">Vision OS 应用原型 - 连接您的健康与医疗需求</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <!-- 产品规划部分 -->
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-6 text-center">产品规划</h2>
+            <div class="bg-white rounded-xl p-8 shadow-lg">
+                <h3 class="text-2xl font-semibold mb-4">用户需求分析</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-medium mb-3 text-blue-700"><ion-icon name="fitness-outline" class="align-middle mr-2"></ion-icon>健身需求</h4>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>个性化健身计划与训练指导</li>
+                            <li>实时动作追踪与纠正</li>
+                            <li>训练数据记录与分析</li>
+                            <li>健身社区互动与激励机制</li>
+                            <li>体态评估与改进建议</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-medium mb-3 text-purple-700"><ion-icon name="medical-outline" class="align-middle mr-2"></ion-icon>医疗需求</h4>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>健康数据监测与异常预警</li>
+                            <li>在线医生咨询与预约</li>
+                            <li>药物管理与提醒</li>
+                            <li>医疗记录与病历存储</li>
+                            <li>恢复训练与康复指导</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-4">功能规划</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full border border-gray-300">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border border-gray-300 px-4 py-3 text-left">模块</th>
+                                <th class="border border-gray-300 px-4 py-3 text-left">核心功能</th>
+                                <th class="border border-gray-300 px-4 py-3 text-left">创新亮点</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-3 font-medium">健康数据中心</td>
+                                <td class="border border-gray-300 px-4 py-3">生命体征监测、睡眠分析、活动追踪</td>
+                                <td class="border border-gray-300 px-4 py-3">3D人体数据可视化、多维健康评分</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="border border-gray-300 px-4 py-3 font-medium">AI健身教练</td>
+                                <td class="border border-gray-300 px-4 py-3">动作捕捉分析、实时指导、定制训练计划</td>
+                                <td class="border border-gray-300 px-4 py-3">沉浸式3D训练环境、虚拟教练互动</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-3 font-medium">远程医疗平台</td>
+                                <td class="border border-gray-300 px-4 py-3">视频问诊、电子处方、诊断记录</td>
+                                <td class="border border-gray-300 px-4 py-3">AI辅助诊断、医患3D空间互动</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="border border-gray-300 px-4 py-3 font-medium">康复与恢复</td>
+                                <td class="border border-gray-300 px-4 py-3">康复训练指导、恢复进度跟踪</td>
+                                <td class="border border-gray-300 px-4 py-3">3D康复模拟、肌肉骨骼系统可视化</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-3 font-medium">社区与激励</td>
+                                <td class="border border-gray-300 px-4 py-3">健身挑战、进度分享、朋友圈</td>
+                                <td class="border border-gray-300 px-4 py-3">虚拟团队训练、AR健身游戏化</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 用户流程设计 -->
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-6 text-center">用户流程</h2>
+            <div class="bg-white rounded-xl p-8 shadow-lg">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <ion-icon name="person-add-outline" class="text-3xl text-blue-600"></ion-icon>
+                        </div>
+                        <p class="text-center font-medium">注册/登录</p>
+                    </div>
+                    <div class="flex items-center">
+                        <ion-icon name="arrow-forward-outline" class="text-2xl text-gray-400"></ion-icon>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <ion-icon name="clipboard-outline" class="text-3xl text-blue-600"></ion-icon>
+                        </div>
+                        <p class="text-center font-medium">健康评估</p>
+                    </div>
+                    <div class="flex items-center">
+                        <ion-icon name="arrow-forward-outline" class="text-2xl text-gray-400"></ion-icon>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <ion-icon name="options-outline" class="text-3xl text-blue-600"></ion-icon>
+                        </div>
+                        <p class="text-center font-medium">定制计划</p>
+                    </div>
+                    <div class="flex items-center">
+                        <ion-icon name="arrow-forward-outline" class="text-2xl text-gray-400"></ion-icon>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <ion-icon name="fitness-outline" class="text-3xl text-blue-600"></ion-icon>
+                        </div>
+                        <p class="text-center font-medium">健身/医疗</p>
+                    </div>
+                    <div class="flex items-center">
+                        <ion-icon name="arrow-forward-outline" class="text-2xl text-gray-400"></ion-icon>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                            <ion-icon name="analytics-outline" class="text-3xl text-blue-600"></ion-icon>
+                        </div>
+                        <p class="text-center font-medium">数据分析</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UI设计部分 -->
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-6 text-center">UI设计</h2>
+            
+            <!-- 启动页&登录页 -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold mb-6 text-center">启动页 & 登录页</h3>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- 启动页 -->
+                    <div class="app-frame relative">
+                        <div class="h-full bg-gradient-to-br from-blue-500 to-purple-700 flex flex-col items-center justify-center">
+                            <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+                                <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-purple-400 opacity-20 floating-element"></div>
+                                <div class="absolute bottom-20 right-5 w-40 h-40 rounded-full bg-blue-400 opacity-20 floating-element"></div>
+                            </div>
+                            <div class="z-10 text-center px-8">
+                                <div class="w-24 h-24 bg-white rounded-full mx-auto mb-6 flex items-center justify-center">
+                                    <ion-icon name="pulse" class="text-5xl text-blue-600"></ion-icon>
+                                </div>
+                                <h2 class="text-4xl font-bold text-white mb-3">健康医疗</h2>
+                                <p class="text-blue-100 mb-8">您的私人健康管家</p>
+                                <p class="text-xs text-blue-200 animate-pulse">轻触屏幕继续</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 登录页 -->
+                    <div class="app-frame">
+                        <div class="h-full bg-white flex flex-col">
+                            <div class="h-1/3 bg-gradient-to-r from-blue-500 to-purple-600 relative">
+                                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-white rounded-full flex items-center justify-center border-4 border-white">
+                                    <ion-icon name="fitness" class="text-4xl text-blue-600"></ion-icon>
+                                </div>
+                            </div>
+                            <div class="flex-1 pt-16 px-8">
+                                <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">欢迎回来</h2>
+                                <div class="space-y-4 mb-6">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <label class="text-xs text-gray-500 block mb-1">电子邮箱</label>
+                                        <input type="email" placeholder="输入您的邮箱" class="w-full bg-transparent text-gray-800 focus:outline-none">
+                                    </div>
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <label class="text-xs text-gray-500 block mb-1">密码</label>
+                                        <input type="password" placeholder="输入您的密码" class="w-full bg-transparent text-gray-800 focus:outline-none">
+                                    </div>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-4 rounded-lg font-medium">登录</button>
+                                <div class="mt-6 text-center">
+                                    <a href="#" class="text-blue-600 text-sm">忘记密码?</a>
+                                    <p class="mt-4 text-gray-500 text-sm">还没有账号? <a href="#" class="text-blue-600">立即注册</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 主页&数据中心 -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold mb-6 text-center">主页 & 健康数据中心</h3>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- 主页 -->
+                    <div class="app-frame">
+                        <div class="h-full bg-white flex flex-col">
+                            <!-- 顶部状态栏 -->
+                            <div class="bg-white px-6 py-6">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h2 class="text-2xl font-bold text-gray-800">早上好，王小明！</h2>
+                                        <p class="text-gray-500 text-sm">您今天状态很好！继续保持。</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                                            <ion-icon name="search-outline" class="text-gray-500"></ion-icon>
+                                        </div>
+                                        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                            <ion-icon name="notifications-outline" class="text-gray-500"></ion-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 内容区域 -->
+                            <div class="flex-1 overflow-auto px-5">
+                                <!-- 健康数据卡片组 -->
+                                <div class="grid grid-cols-3 gap-3 mb-5">
+                                    <div class="bg-gray-50 p-4 rounded-2xl">
+                                        <div class="flex items-center mb-2">
+                                            <ion-icon name="thermometer-outline" class="text-red-500 mr-2"></ion-icon>
+                                            <span class="text-xs text-gray-500">体温</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="text-xl font-semibold text-gray-800">37.1°</span>
+                                        </div>
+                                        <div class="h-12 mt-2">
+                                            <div class="w-full h-px bg-gray-200 relative my-4">
+                                                <div class="absolute -top-1 left-1/3 w-2 h-2 bg-gray-300 rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-2xl">
+                                        <div class="flex items-center mb-2">
+                                            <ion-icon name="heart-outline" class="text-red-500 mr-2"></ion-icon>
+                                            <span class="text-xs text-gray-500">心率</span>
+                                        </div>
+                                        <div class="flex items-baseline mt-2">
+                                            <span class="text-xl font-semibold text-gray-800">124</span>
+                                            <span class="text-xs text-gray-500 ml-1">bpm</span>
+                                        </div>
+                                        <div class="h-12 mt-2">
+                                            <div class="w-full h-px bg-gray-200 relative my-4">
+                                                <div class="absolute -top-1 left-2/3 w-2 h-2 bg-gray-300 rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded-2xl">
+                                        <div class="flex items-center mb-2">
+                                            <ion-icon name="water-outline" class="text-blue-500 mr-2"></ion-icon>
+                                            <span class="text-xs text-gray-500">血糖</span>
+                                        </div>
+                                        <div class="flex items-baseline mt-2">
+                                            <span class="text-xl font-semibold text-gray-800">182</span>
+                                            <span class="text-xs text-gray-500 ml-1">mg/dl</span>
+                                        </div>
+                                        <div class="h-12 mt-2">
+                                            <svg class="h-8 w-full" viewBox="0 0 100 20">
+                                                <path d="M0,10 Q10,5 20,10 T40,10 T60,10 T80,5 T100,10" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+                                                <path d="M0,10 Q10,5 20,10 T40,10 T60,10 T80,5 T100,10" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 身体状况 -->
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h3 class="text-xl font-bold text-gray-800">身体状况</h3>
+                                        <span class="text-sm text-gray-500">124</span>
+                                    </div>
+                                    
+                                    <div class="flex">
+                                        <div class="w-1/2">
+                                            <div class="space-y-6">
+                                                <div>
+                                                    <div class="flex justify-between items-center mb-2">
+                                                        <span class="text-sm text-gray-500">体重</span>
+                                                        <div class="flex items-end">
+                                                            <span class="text-lg font-semibold text-gray-800">74.2</span>
+                                                            <span class="text-xs text-gray-500 ml-1">kg</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                        <div class="h-full w-3/4 bg-gradient-to-r from-blue-400 to-blue-500"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <div class="flex justify-between items-center mb-2">
+                                                        <span class="text-sm text-gray-500">食物</span>
+                                                        <div class="flex items-end">
+                                                            <span class="text-lg font-semibold text-gray-800">253</span>
+                                                            <span class="text-xs text-gray-500 ml-1">kCal</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                        <div class="h-full w-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <div class="flex justify-between items-center mb-2">
+                                                        <span class="text-sm text-gray-500">睡眠时间</span>
+                                                        <div class="flex items-end">
+                                                            <span class="text-lg font-semibold text-gray-800">6:28</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bg-gray-100 rounded-lg p-2 text-xs text-center">
+                                                        <span class="bg-indigo-500 text-white py-0.5 px-2 rounded-full">20:45 - 06:30</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="w-1/2 pl-4">
+                                            <div class="relative h-full">
+                                                <!-- 3D人体模型 -->
+                                                <div class="absolute inset-0 flex items-center justify-center">
+                                                    <svg width="150" height="280" viewBox="0 0 150 280" fill="none" class="opacity-70">
+                                                        <path d="M75,40 Q90,25 105,40 Q120,55 105,70 Q90,85 75,70 Q60,55 75,40" fill="#f1f5f9"/>
+                                                        <path d="M75,70 L75,120" stroke="#f1f5f9" stroke-width="10" stroke-linecap="round"/>
+                                                        <path d="M75,80 L50,110" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round"/>
+                                                        <path d="M75,80 L100,110" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round"/>
+                                                        <path d="M75,120 L60,180" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round"/>
+                                                        <path d="M75,120 L90,180" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round"/>
+                                                        <path d="M60,180 L55,240" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round"/>
+                                                        <path d="M90,180 L95,240" stroke="#f1f5f9" stroke-width="8" stroke-linecap="round"/>
+                                                    </svg>
+                                                </div>
+                                                
+                                                <!-- 健康状态点 -->
+                                                <div class="absolute top-1/4 right-1/3">
+                                                    <div class="w-4 h-4 bg-red-500 rounded-full pulse-animation shadow-lg"></div>
+                                                </div>
+                                                <div class="absolute top-1/2 left-1/4">
+                                                    <div class="w-4 h-4 bg-red-500 rounded-full pulse-animation shadow-lg"></div>
+                                                </div>
+                                                <div class="absolute bottom-1/4 right-1/4">
+                                                    <div class="w-4 h-4 bg-red-500 rounded-full pulse-animation shadow-lg"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 活动 -->
+                                <div class="mb-6">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h3 class="text-xl font-bold text-gray-800">活动</h3>
+                                        <div class="flex items-center">
+                                            <span class="text-lg font-semibold text-gray-800">7425</span>
+                                            <span class="text-xs text-gray-500 ml-1">步数</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-blue-50 rounded-2xl p-5 relative overflow-hidden">
+                                        <div class="absolute -top-5 -right-5 w-24 h-24 bg-blue-100 rounded-full opacity-50"></div>
+                                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-blue-100 rounded-full opacity-30"></div>
+                                        
+                                        <div class="relative flex items-center">
+                                            <div class="w-1/2">
+                                                <div class="text-blue-800 text-sm mb-2">今日步数目标</div>
+                                                <div class="text-blue-900 text-2xl font-bold mb-1">10,000 步</div>
+                                                <div class="text-blue-700 text-sm">已完成 <span class="font-medium">74%</span></div>
+                                                
+                                                <button class="mt-4 bg-white text-blue-700 border border-blue-200 px-3 py-2 rounded-lg text-sm">
+                                                    我的心情
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="w-1/2 flex justify-center">
+                                                <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center relative">
+                                                    <svg width="88" height="88" viewBox="0 0 88 88">
+                                                        <circle cx="44" cy="44" r="40" fill="none" stroke="#e0e7ff" stroke-width="8"/>
+                                                        <circle cx="44" cy="44" r="40" fill="none" stroke="#3b82f6" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="65" transform="rotate(-90 44 44)"/>
+                                                    </svg>
+                                                    <div class="absolute inset-0 flex items-center justify-center">
+                                                        <span class="text-blue-700 font-bold">74%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 放松提示 -->
+                                <div class="mb-6">
+                                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-5 text-white relative overflow-hidden">
+                                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full"></div>
+                                        <div class="absolute bottom-0 right-0 w-32 h-20 bg-white/5"></div>
+                                        
+                                        <h3 class="text-xl font-bold mb-2">放松与休息</h3>
+                                        <p class="text-blue-100 text-sm mb-4">花点时间放松身心，通过引导式冥想、呼吸练习和正念练习恢复活力。</p>
+                                        
+                                        <div class="flex justify-between items-center">
+                                            <button class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm">
+                                                记录我的心情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 健康数据卡片 -->
+                                <div class="mb-8">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center mr-3">
+                                                <ion-icon name="heart" class="text-xl text-red-500"></ion-icon>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-bold text-gray-800">心率</h3>
+                                                <p class="text-sm text-gray-500">124 bpm</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <svg width="80" height="30" viewBox="0 0 80 30">
+                                            <path d="M0,15 L10,10 L15,20 L25,5 L30,15 L40,10 L50,5 L60,15 L70,10 L80,15" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 底部导航 -->
+                            <div class="bg-white pt-2 pb-4 flex justify-around border-t border-gray-100">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                                        <ion-icon name="pulse" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1 text-blue-600 font-medium">健康</span>
+                                </div>
+                                <div class="flex flex-col items-center text-gray-400">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <ion-icon name="fitness-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1">训练</span>
+                                </div>
+                                <div class="flex flex-col items-center text-gray-400">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <ion-icon name="medkit-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1">医疗</span>
+                                </div>
+                                <div class="flex flex-col items-center text-gray-400">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <ion-icon name="person-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1">个人</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 健康数据中心 -->
+                    <div class="app-frame">
+                        <div class="h-full bg-white flex flex-col">
+                            <!-- 顶部状态栏 -->
+                            <div class="bg-white px-6 py-6 flex items-center">
+                                <ion-icon name="chevron-back-outline" class="text-gray-600 mr-4 text-xl"></ion-icon>
+                                <h2 class="text-2xl font-bold text-gray-800">健康数据</h2>
+                            </div>
+                            
+                            <!-- 内容区域 -->
+                            <div class="flex-1 overflow-auto px-5">
+                                <!-- 3D人体模型 -->
+                                <div class="bg-white rounded-2xl mb-6 overflow-hidden relative" style="height: 280px;">
+                                    <div class="absolute inset-0 bg-gray-50"></div>
+                                    <div class="relative h-full flex z-10">
+                                        <div class="w-1/2 p-4">
+                                            <h3 class="font-bold text-gray-800 mb-2">3D健康分析</h3>
+                                            <p class="text-xs text-gray-500 mb-4">点击不同部位查看健康状态</p>
+                                            
+                                            <div class="space-y-3 mt-8">
+                                                <div class="flex items-center">
+                                                    <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                                    <span class="text-sm text-gray-700">异常区域</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                                    <span class="text-sm text-gray-700">警告区域</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                                    <span class="text-sm text-gray-700">健康区域</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="absolute bottom-4 left-4 text-xs text-gray-500">
+                                                <ion-icon name="information-circle-outline" class="align-middle mr-1"></ion-icon>
+                                                <span>数据更新于 8:30 AM</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="w-1/2 flex items-center justify-center relative">
+                                            <svg width="140" height="250" viewBox="0 0 140 250" fill="none" class="opacity-80">
+                                                <path d="M70,35 Q85,20 100,35 Q115,50 100,65 Q85,80 70,65 Q55,50 70,35" fill="#f1f5f9"/>
+                                                <path d="M70,65 L70,115" stroke="#f1f5f9" stroke-width="9" stroke-linecap="round"/>
+                                                <path d="M70,75 L45,105" stroke="#f1f5f9" stroke-width="7" stroke-linecap="round"/>
+                                                <path d="M70,75 L95,105" stroke="#f1f5f9" stroke-width="7" stroke-linecap="round"/>
+                                                <path d="M70,115 L55,175" stroke="#f1f5f9" stroke-width="7" stroke-linecap="round"/>
+                                                <path d="M70,115 L85,175" stroke="#f1f5f9" stroke-width="7" stroke-linecap="round"/>
+                                                <path d="M55,175 L50,235" stroke="#f1f5f9" stroke-width="7" stroke-linecap="round"/>
+                                                <path d="M85,175 L90,235" stroke="#f1f5f9" stroke-width="7" stroke-linecap="round"/>
+                                            </svg>
+                                            
+                                            <!-- 标记点 -->
+                                            <div class="absolute top-14 right-16">
+                                                <div class="w-4 h-4 bg-red-500 rounded-full pulse-animation shadow-lg"></div>
+                                            </div>
+                                            <div class="absolute top-28 left-14">
+                                                <div class="w-4 h-4 bg-yellow-500 rounded-full pulse-animation shadow-lg"></div>
+                                            </div>
+                                            <div class="absolute bottom-16 right-16">
+                                                <div class="w-4 h-4 bg-green-500 rounded-full pulse-animation shadow-lg"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 健康数据选择 -->
+                                <div class="flex gap-2 mb-4 overflow-x-auto py-2">
+                                    <div class="flex-shrink-0 bg-blue-600 text-white px-4 py-2 rounded-full text-xs whitespace-nowrap">全部指标</div>
+                                    <div class="flex-shrink-0 bg-white border border-gray-100 text-gray-700 px-4 py-2 rounded-full text-xs whitespace-nowrap">心血管</div>
+                                    <div class="flex-shrink-0 bg-white border border-gray-100 text-gray-700 px-4 py-2 rounded-full text-xs whitespace-nowrap">肌肉骨骼</div>
+                                    <div class="flex-shrink-0 bg-white border border-gray-100 text-gray-700 px-4 py-2 rounded-full text-xs whitespace-nowrap">代谢系统</div>
+                                    <div class="flex-shrink-0 bg-white border border-gray-100 text-gray-700 px-4 py-2 rounded-full text-xs whitespace-nowrap">神经系统</div>
+                                </div>
+                                
+                                <!-- 健康卡片 -->
+                                <div class="grid grid-cols-2 gap-3 mb-5">
+                                    <div class="bg-white border border-gray-100 p-4 rounded-2xl">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 mr-2">
+                                                    <ion-icon name="heart-outline"></ion-icon>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-800">心率</span>
+                                            </div>
+                                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">正常</span>
+                                        </div>
+                                        <div>
+                                            <div class="flex items-center gap-1">
+                                                <span class="text-2xl font-bold text-gray-800">72</span>
+                                                <span class="text-xs text-gray-500">bpm</span>
+                                            </div>
+                                            <div class="mt-1 text-xs text-green-600">
+                                                <ion-icon name="trending-down-outline" class="align-middle"></ion-icon>
+                                                <span class="align-middle">较平常低 5 bpm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-100 p-4 rounded-2xl">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center text-red-500 mr-2">
+                                                    <ion-icon name="thermometer-outline"></ion-icon>
+                                                </div>
+                                                <span class="text-sm font-medium text-gray-800">血压</span>
+                                            </div>
+                                            <span class="text-xs bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded-full">偏高</span>
+                                        </div>
+                                        <div>
+                                            <div class="flex items-center gap-1">
+                                                <span class="text-2xl font-bold text-gray-800">128/85</span>
+                                            </div>
+                                            <div class="mt-1 text-xs text-yellow-600">
+                                                <ion-icon name="trending-up-outline" class="align-middle"></ion-icon>
+                                                <span class="align-middle">略高于正常范围</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 数据图表 -->
+                                <div class="bg-white border border-gray-100 p-5 rounded-2xl mb-5">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <h3 class="font-bold text-gray-800">血糖变化</h3>
+                                        <div class="flex bg-gray-50 rounded-lg overflow-hidden text-xs">
+                                            <span class="px-3 py-1 text-gray-700">日</span>
+                                            <span class="bg-blue-600 px-3 py-1 text-white">周</span>
+                                            <span class="px-3 py-1 text-gray-700">月</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="h-40 relative">
+                                        <svg viewBox="0 0 300 100" class="w-full h-full">
+                                            <!-- 网格线 -->
+                                            <line x1="0" y1="0" x2="300" y2="0" stroke="#f3f4f6" stroke-width="1"/>
+                                            <line x1="0" y1="25" x2="300" y2="25" stroke="#f3f4f6" stroke-width="1"/>
+                                            <line x1="0" y1="50" x2="300" y2="50" stroke="#f3f4f6" stroke-width="1"/>
+                                            <line x1="0" y1="75" x2="300" y2="75" stroke="#f3f4f6" stroke-width="1"/>
+                                            <line x1="0" y1="100" x2="300" y2="100" stroke="#f3f4f6" stroke-width="1"/>
+                                            
+                                            <!-- 数据线 -->
+                                            <path d="M0,70 C20,60 40,40 60,50 C80,60 100,30 120,35 C140,40 160,60 180,55 C200,50 220,40 240,45 C260,50 280,30 300,35" class="chart-line" stroke="#3b82f6"/>
+                                            
+                                            <!-- 填充区域 -->
+                                            <path d="M0,70 C20,60 40,40 60,50 C80,60 100,30 120,35 C140,40 160,60 180,55 C200,50 220,40 240,45 C260,50 280,30 300,35 L300,100 L0,100 Z" class="chart-area" fill="#3b82f6"/>
+                                            
+                                            <!-- 数据点 -->
+                                            <circle cx="60" cy="50" r="3" fill="#3b82f6"/>
+                                            <circle cx="120" cy="35" r="3" fill="#3b82f6"/>
+                                            <circle cx="180" cy="55" r="3" fill="#3b82f6"/>
+                                            <circle cx="240" cy="45" r="3" fill="#3b82f6"/>
+                                            <circle cx="300" cy="35" r="3" fill="#3b82f6"/>
+                                        </svg>
+                                        
+                                        <!-- 图表标签 -->
+                                        <div class="flex justify-between text-xs text-gray-500">
+                                            <div>周一</div>
+                                            <div>周二</div>
+                                            <div>周三</div>
+                                            <div>周四</div>
+                                            <div>周五</div>
+                                            <div>周六</div>
+                                            <div>周日</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex justify-between text-xs text-gray-500 mt-3">
+                                        <div>最低: 110 mg/dl</div>
+                                        <div>平均: 152 mg/dl</div>
+                                        <div>最高: 182 mg/dl</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 健康建议 -->
+                                <div class="bg-white border border-gray-100 p-5 rounded-2xl mb-5">
+                                    <h3 class="font-bold text-gray-800 mb-4">健康建议</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mr-3">
+                                                <ion-icon name="water-outline"></ion-icon>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-sm font-medium text-gray-800">增加水分摄入</h4>
+                                                <p class="text-xs text-gray-500">今日饮水量偏低，建议增加500ml</p>
+                                                <button class="mt-2 text-xs text-blue-600">查看详情</button>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center text-yellow-600 mr-3">
+                                                <ion-icon name="restaurant-outline"></ion-icon>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-sm font-medium text-gray-800">血糖监测提醒</h4>
+                                                <p class="text-xs text-gray-500">您的血糖略有波动，建议减少精制碳水摄入</p>
+                                                <button class="mt-2 text-xs text-blue-600">查看饮食建议</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 底部导航 -->
+                            <div class="bg-white pt-2 pb-4 flex justify-around border-t border-gray-100">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                                        <ion-icon name="pulse" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1 text-blue-600 font-medium">健康</span>
+                                </div>
+                                <div class="flex flex-col items-center text-gray-400">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <ion-icon name="fitness-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1">训练</span>
+                                </div>
+                                <div class="flex flex-col items-center text-gray-400">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <ion-icon name="medkit-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1">医疗</span>
+                                </div>
+                                <div class="flex flex-col items-center text-gray-400">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                        <ion-icon name="person-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs mt-1">个人</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 训练&医疗界面 -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-semibold mb-6 text-center">训练 & 医疗界面</h3>
+            <div class="flex flex-wrap justify-center gap-8">
+                <!-- 训练界面 -->
+                <div class="app-frame">
+                    <div class="h-full bg-white flex flex-col">
+                        <!-- 顶部状态栏 -->
+                        <div class="bg-white px-6 py-6">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h2 class="text-2xl font-bold text-gray-800">训练中心</h2>
+                                    <p class="text-gray-500 text-sm">让我们一起保持健康</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <ion-icon name="options-outline" class="text-gray-500"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 内容区域 -->
+                        <div class="flex-1 overflow-auto px-5">
+                            <!-- 训练计划卡片 -->
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-5 mb-6 relative overflow-hidden text-white">
+                                <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full"></div>
+                                <div class="absolute bottom-0 right-0 w-32 h-20 bg-white/5"></div>
+                                
+                                <div class="flex items-start mb-4">
+                                    <div class="flex-1">
+                                        <h3 class="text-xl font-bold mb-1">核心力量训练</h3>
+                                        <p class="text-blue-100 text-sm mb-3">提升核心肌群稳定性与力量</p>
+                                        
+                                        <div class="flex items-center text-blue-100 text-sm mb-4">
+                                            <ion-icon name="calendar-outline" class="mr-1"></ion-icon>
+                                            <span>第2周 · 第3天</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1 text-xs font-medium">
+                                        3周计划
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-5">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm">完成进度</span>
+                                        <span class="text-sm">60%</span>
+                                    </div>
+                                    <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                                        <div class="h-full w-3/5 bg-white rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <button class="bg-white text-blue-600 py-2.5 px-4 rounded-lg text-sm font-medium">
+                                    继续训练
+                                </button>
+                            </div>
+                            
+                            <!-- 今日训练摘要 -->
+                            <div class="bg-white border border-gray-100 rounded-2xl p-5 mb-6">
+                                <h3 class="text-lg font-bold text-gray-800 mb-4">今日训练摘要</h3>
+                                
+                                <div class="grid grid-cols-3 gap-3 mb-2">
+                                    <div class="bg-gray-50 p-3 rounded-xl text-center">
+                                        <div class="text-xl font-bold text-gray-800">30</div>
+                                        <div class="text-xs text-gray-500">分钟</div>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-xl text-center">
+                                        <div class="text-xl font-bold text-gray-800">12</div>
+                                        <div class="text-xs text-gray-500">动作</div>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-xl text-center">
+                                        <div class="text-xl font-bold text-gray-800">320</div>
+                                        <div class="text-xs text-gray-500">卡路里</div>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-xs text-gray-500 text-center">完成今日训练，可获得35积分</p>
+                            </div>
+                            
+                            <!-- 训练类别 -->
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">选择训练类别</h3>
+                            
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <div class="bg-blue-50 rounded-xl p-4 relative overflow-hidden">
+                                    <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-blue-100 rounded-full opacity-60"></div>
+                                    <div class="relative z-10">
+                                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-3">
+                                            <ion-icon name="fitness" class="text-xl"></ion-icon>
+                                        </div>
+                                        <h4 class="font-medium text-gray-800 text-sm mb-1">增肌训练</h4>
+                                        <p class="text-xs text-gray-500">10+ 训练计划</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-red-50 rounded-xl p-4 relative overflow-hidden">
+                                    <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-red-100 rounded-full opacity-60"></div>
+                                    <div class="relative z-10">
+                                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600 mb-3">
+                                            <ion-icon name="flame" class="text-xl"></ion-icon>
+                                        </div>
+                                        <h4 class="font-medium text-gray-800 text-sm mb-1">燃脂训练</h4>
+                                        <p class="text-xs text-gray-500">8+ 训练计划</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-50 rounded-xl p-4 relative overflow-hidden">
+                                    <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-green-100 rounded-full opacity-60"></div>
+                                    <div class="relative z-10">
+                                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-3">
+                                            <ion-icon name="body" class="text-xl"></ion-icon>
+                                        </div>
+                                        <h4 class="font-medium text-gray-800 text-sm mb-1">柔韧性训练</h4>
+                                        <p class="text-xs text-gray-500">6+ 训练计划</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-purple-50 rounded-xl p-4 relative overflow-hidden">
+                                    <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-purple-100 rounded-full opacity-60"></div>
+                                    <div class="relative z-10">
+                                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-3">
+                                            <ion-icon name="medical" class="text-xl"></ion-icon>
+                                        </div>
+                                        <h4 class="font-medium text-gray-800 text-sm mb-1">康复训练</h4>
+                                        <p class="text-xs text-gray-500">4+ 训练计划</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 推荐训练 -->
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">推荐训练</h3>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="bg-white border border-gray-100 p-4 rounded-xl flex">
+                                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-4">
+                                        <ion-icon name="body-outline" class="text-2xl"></ion-icon>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-gray-800 mb-1">肩颈放松训练</h4>
+                                            <div class="flex items-center">
+                                                <ion-icon name="star" class="text-yellow-400 text-xs"></ion-icon>
+                                                <span class="text-xs text-gray-500 ml-1">4.8</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-500 mb-2">缓解长时间伏案工作导致的颈椎不适</p>
+                                        <div class="flex items-center">
+                                            <div class="flex items-center mr-4">
+                                                <ion-icon name="time-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">15分钟</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <ion-icon name="barbell-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">初级</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-100 p-4 rounded-xl flex">
+                                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mr-4">
+                                        <ion-icon name="fitness-outline" class="text-2xl"></ion-icon>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-gray-800 mb-1">全身HIIT训练</h4>
+                                            <div class="flex items-center">
+                                                <ion-icon name="star" class="text-yellow-400 text-xs"></ion-icon>
+                                                <span class="text-xs text-gray-500 ml-1">4.9</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-xs text-gray-500 mb-2">快速燃脂增强心肺功能</p>
+                                        <div class="flex items-center">
+                                            <div class="flex items-center mr-4">
+                                                <ion-icon name="time-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">30分钟</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <ion-icon name="barbell-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">中级</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 3D训练提示 -->
+                            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-5 text-white relative overflow-hidden mb-6">
+                                <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full"></div>
+                                <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full"></div>
+                                
+                                <h3 class="text-lg font-bold mb-2">VisionOS 3D训练体验</h3>
+                                <p class="text-indigo-100 text-sm mb-4">使用空间计算功能，体验沉浸式训练指导和实时姿势纠正</p>
+                                
+                                <button class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm">
+                                    开始体验
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 底部导航 -->
+                        <div class="bg-white pt-2 pb-4 flex justify-around border-t border-gray-100">
+                            <div class="flex flex-col items-center text-gray-400">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                    <ion-icon name="pulse-outline" class="text-xl"></ion-icon>
+                                </div>
+                                <span class="text-xs mt-1">健康</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                                    <ion-icon name="fitness" class="text-xl"></ion-icon>
+                                </div>
+                                <span class="text-xs mt-1 text-blue-600 font-medium">训练</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                    <ion-icon name="medkit-outline" class="text-xl"></ion-icon>
+                                </div>
+                                <span class="text-xs mt-1">医疗</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center">
+                                    <ion-icon name="person-outline" class="text-xl"></ion-icon>
+                                </div>
+                                <span class="text-xs mt-1">个人</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 医疗界面 -->
+                <div class="app-frame">
+                    <div class="h-full bg-gray-50 flex flex-col">
+                        <!-- 顶部状态栏 -->
+                        <div class="bg-white px-6 py-4 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h2 class="text-xl font-bold text-gray-800">医疗中心</h2>
+                                    <p class="text-gray-500 text-sm">专业健康服务</p>
+                                </div>
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                                    <ion-icon name="notifications-outline"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 内容区域 -->
+                        <div class="flex-1 overflow-auto p-5">
+                            <!-- 搜索栏 -->
+                            <div class="bg-white flex items-center px-4 py-3 rounded-xl shadow-sm mb-5">
+                                <ion-icon name="search-outline" class="text-gray-400 mr-2"></ion-icon>
+                                <input type="text" placeholder="搜索症状、医生或医院" class="w-full bg-transparent focus:outline-none text-sm">
+                            </div>
+                            
+                            <!-- 快速服务 -->
+                            <div class="grid grid-cols-4 gap-3 mb-6">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-2">
+                                        <ion-icon name="videocam-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs text-gray-700">在线问诊</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-2">
+                                        <ion-icon name="calendar-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs text-gray-700">预约门诊</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-2">
+                                        <ion-icon name="medkit-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs text-gray-700">药品管理</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 mb-2">
+                                        <ion-icon name="document-text-outline" class="text-xl"></ion-icon>
+                                    </div>
+                                    <span class="text-xs text-gray-700">健康档案</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 今日提醒 -->
+                            <div class="bg-blue-50 p-4 rounded-xl shadow-sm mb-5 border border-blue-100">
+                                <div class="flex">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3">
+                                        <ion-icon name="alert-circle-outline"></ion-icon>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-1">今日用药提醒</h4>
+                                        <p class="text-xs text-gray-600">您有2次用药提醒待完成</p>
+                                        <button class="mt-2 bg-white text-blue-600 border border-blue-200 px-3 py-1.5 rounded-lg text-xs">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 即将到来的预约 -->
+                            <h3 class="font-medium text-gray-700 mb-3">即将到来的预约</h3>
+                            <div class="bg-white p-4 rounded-xl shadow-sm mb-5">
+                                <div class="flex mb-3">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+                                        <ion-icon name="videocam"></ion-icon>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-medium text-gray-800">视频问诊</h4>
+                                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">今天 14:00</span>
+                                        </div>
+                                        <p class="text-sm text-gray-500">张医生 - 骨科专家</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between space-x-2">
+                                    <button class="flex-1 border border-gray-200 text-gray-700 py-2 rounded-lg text-sm">重新安排</button>
+                                    <button class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm">进入会诊</button>
+                                </div>
+                            </div>
+                            
+                            <!-- 推荐医生 -->
+                            <h3 class="font-medium text-gray-700 mb-3">推荐医生</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-xl shadow-sm flex">
+                                    <div class="w-14 h-14 bg-gray-200 rounded-full mr-3"></div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">李医生</h4>
+                                                <p class="text-xs text-gray-500">心脏内科 | 三甲医院</p>
+                                            </div>
+                                            <div class="flex items-center text-yellow-400 text-xs">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star-half"></ion-icon>
+                                                <span class="text-gray-500 ml-1">4.8</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center mt-2">
+                                            <div class="flex items-center mr-3">
+                                                <ion-icon name="chatbubble-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">¥60/次</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <ion-icon name="videocam-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">¥120/次</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm flex">
+                                    <div class="w-14 h-14 bg-gray-200 rounded-full mr-3"></div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">王医生</h4>
+                                                <p class="text-xs text-gray-500">运动医学 | 体育医院</p>
+                                            </div>
+                                            <div class="flex items-center text-yellow-400 text-xs">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star-outline"></ion-icon>
+                                                <span class="text-gray-500 ml-1">4.2</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center mt-2">
+                                            <div class="flex items-center mr-3">
+                                                <ion-icon name="chatbubble-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">¥80/次</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <ion-icon name="videocam-outline" class="text-gray-400 text-xs mr-1"></ion-icon>
+                                                <span class="text-xs text-gray-500">¥150/次</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 底部导航 -->
+                        <div class="bg-white px-2 py-4 flex justify-around shadow-lg">
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="home-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">主页</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="fitness-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">训练</span>
+                            </div>
+                            <div class="flex flex-col items-center text-blue-600">
+                                <ion-icon name="medkit" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">医疗</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="people-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">社区</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="person-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">我的</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 社区&VisionOS特性 -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-semibold mb-6 text-center">社区 & VisionOS特性</h3>
+            <div class="flex flex-wrap justify-center gap-8">
+                <!-- 社区界面 -->
+                <div class="app-frame">
+                    <div class="h-full bg-gray-50 flex flex-col">
+                        <!-- 顶部状态栏 -->
+                        <div class="bg-white px-6 py-4 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h2 class="text-xl font-bold text-gray-800">健康社区</h2>
+                                    <p class="text-gray-500 text-sm">分享与学习</p>
+                                </div>
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                                    <ion-icon name="chatbubbles-outline"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 内容区域 -->
+                        <div class="flex-1 overflow-auto">
+                            <!-- 热门话题 -->
+                            <div class="px-5 py-4">
+                                <h3 class="font-medium text-gray-700 mb-3">热门话题</h3>
+                                <div class="flex overflow-x-auto py-2 space-x-3">
+                                    <div class="flex-shrink-0 w-28 h-32 bg-blue-600 rounded-xl flex flex-col items-center justify-center text-white p-2">
+                                        <ion-icon name="heart" class="text-2xl mb-2"></ion-icon>
+                                        <span class="text-xs text-center">心脏健康月</span>
+                                        <span class="text-xs text-blue-200 mt-1">24.5k参与</span>
+                                    </div>
+                                    <div class="flex-shrink-0 w-28 h-32 bg-purple-600 rounded-xl flex flex-col items-center justify-center text-white p-2">
+                                        <ion-icon name="bed" class="text-2xl mb-2"></ion-icon>
+                                        <span class="text-xs text-center">改善睡眠质量</span>
+                                        <span class="text-xs text-purple-200 mt-1">18.2k参与</span>
+                                    </div>
+                                    <div class="flex-shrink-0 w-28 h-32 bg-green-600 rounded-xl flex flex-col items-center justify-center text-white p-2">
+                                        <ion-icon name="nutrition" class="text-2xl mb-2"></ion-icon>
+                                        <span class="text-xs text-center">健康饮食习惯</span>
+                                        <span class="text-xs text-green-200 mt-1">20.1k参与</span>
+                                    </div>
+                                    <div class="flex-shrink-0 w-28 h-32 bg-yellow-600 rounded-xl flex flex-col items-center justify-center text-white p-2">
+                                        <ion-icon name="sunny" class="text-2xl mb-2"></ion-icon>
+                                        <span class="text-xs text-center">心理健康</span>
+                                        <span class="text-xs text-yellow-200 mt-1">15.8k参与</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 社区动态 -->
+                            <div class="px-5">
+                                <div class="flex justify-between items-center mb-3">
+                                    <h3 class="font-medium text-gray-700">动态</h3>
+                                    <div class="flex bg-gray-100 rounded-lg overflow-hidden text-xs">
+                                        <span class="bg-blue-600 text-white px-3 py-1">关注</span>
+                                        <span class="text-gray-700 px-3 py-1">发现</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- 动态内容 -->
+                                <div class="space-y-5">
+                                    <!-- 动态1 -->
+                                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                                        <div class="p-4">
+                                            <div class="flex items-center mb-3">
+                                                <div class="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
+                                                <div>
+                                                    <h4 class="font-medium text-gray-800">张健康</h4>
+                                                    <p class="text-xs text-gray-500">2小时前</p>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-800 mb-3">今天完成了5公里晨跑，感觉状态越来越好了！分享一下我的晨跑路线和心率数据 💪</p>
+                                            <div class="mb-3 relative h-40 bg-gray-100 rounded-lg overflow-hidden">
+                                                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-40"></div>
+                                                <div class="absolute bottom-3 left-3 glassmorphism rounded-lg px-2 py-1 text-xs text-white">5.2公里 | 28分钟</div>
+                                            </div>
+                                            <div class="flex justify-between text-gray-500 text-sm">
+                                                <div class="flex items-center">
+                                                    <ion-icon name="heart-outline" class="mr-1"></ion-icon>
+                                                    <span>32</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="chatbubble-outline" class="mr-1"></ion-icon>
+                                                    <span>8</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="share-social-outline" class="mr-1"></ion-icon>
+                                                    <span>分享</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 动态2 -->
+                                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                                        <div class="p-4">
+                                            <div class="flex items-center mb-3">
+                                                <div class="w-10 h-10 bg-gray-200 rounded-full mr-3"></div>
+                                                <div>
+                                                    <h4 class="font-medium text-gray-800">李医生 <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">认证医生</span></h4>
+                                                    <p class="text-xs text-gray-500">5小时前</p>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-800 mb-3">【健康小知识】适量的力量训练对中老年人的骨密度有很大帮助，可以预防骨质疏松。以下是几个适合在家进行的简单训练动作...</p>
+                                            <div class="grid grid-cols-3 gap-2 mb-3">
+                                                <div class="h-24 bg-gray-100 rounded-lg"></div>
+                                                <div class="h-24 bg-gray-100 rounded-lg"></div>
+                                                <div class="h-24 bg-gray-100 rounded-lg"></div>
+                                            </div>
+                                            <div class="flex justify-between text-gray-500 text-sm">
+                                                <div class="flex items-center">
+                                                    <ion-icon name="heart-outline" class="mr-1"></ion-icon>
+                                                    <span>128</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="chatbubble-outline" class="mr-1"></ion-icon>
+                                                    <span>42</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <ion-icon name="bookmark-outline" class="mr-1"></ion-icon>
+                                                    <span>收藏</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 底部导航 -->
+                        <div class="bg-white px-2 py-4 flex justify-around shadow-lg">
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="home-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">主页</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="fitness-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">训练</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="medkit-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">医疗</span>
+                            </div>
+                            <div class="flex flex-col items-center text-blue-600">
+                                <ion-icon name="people" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">社区</span>
+                            </div>
+                            <div class="flex flex-col items-center text-gray-400">
+                                <ion-icon name="person-outline" class="text-xl"></ion-icon>
+                                <span class="text-xs mt-1">我的</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- VisionOS特性展示 -->
+                <div class="app-frame">
+                    <div class="h-full bg-gradient-to-br from-blue-900 to-purple-900 flex flex-col">
+                        <!-- 内容区域 -->
+                        <div class="flex-1 overflow-auto p-5 text-white">
+                            <h2 class="text-2xl font-bold mb-6 text-center">VisionOS特性</h2>
+                            
+                            <!-- 3D交互 -->
+                            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-lg mb-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-500/30 rounded-full flex items-center justify-center mr-4">
+                                        <ion-icon name="cube" class="text-2xl"></ion-icon>
+                                    </div>
+                                    <h3 class="text-xl font-semibold">沉浸式3D交互</h3>
+                                </div>
+                                <p class="text-blue-100 mb-4">利用VisionOS的空间计算能力，提供真实的3D人体模型和训练环境，让健身和医疗体验更加直观。</p>
+                                <div class="h-40 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center overflow-hidden relative">
+                                    <div class="absolute top-0 left-0 w-full h-full opacity-30">
+                                        <div class="absolute top-10 left-10 w-20 h-20 rounded-full bg-blue-500/50 floating-element"></div>
+                                        <div class="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-purple-500/50 floating-element"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-xs text-blue-200 mb-2">点击查看演示</p>
+                                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto backdrop-blur-md">
+                                            <ion-icon name="play" class="text-xl"></ion-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 空间感知 -->
+                            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-lg mb-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-500/30 rounded-full flex items-center justify-center mr-4">
+                                        <ion-icon name="scan" class="text-2xl"></ion-icon>
+                                    </div>
+                                    <h3 class="text-xl font-semibold">空间感知</h3>
+                                </div>
+                                <p class="text-blue-100 mb-4">实时捕捉并分析用户运动姿态，提供精准的动作纠正和指导，让健身训练更加高效安全。</p>
+                                <div class="flex space-x-3 mb-3">
+                                    <div class="flex-1 bg-white/5 rounded-lg p-3">
+                                        <div class="flex items-center mb-2">
+                                            <ion-icon name="checkmark-circle" class="text-green-400 mr-1"></ion-icon>
+                                            <span class="text-sm">姿势识别</span>
+                                        </div>
+                                        <p class="text-xs text-blue-200">实时识别超过200种健身动作</p>
+                                    </div>
+                                    <div class="flex-1 bg-white/5 rounded-lg p-3">
+                                        <div class="flex items-center mb-2">
+                                            <ion-icon name="checkmark-circle" class="text-green-400 mr-1"></ion-icon>
+                                            <span class="text-sm">动态反馈</span>
+                                        </div>
+                                        <p class="text-xs text-blue-200">即时调整建议和视觉引导</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 虚拟医患交互 -->
+                            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-500/30 rounded-full flex items-center justify-center mr-4">
+                                        <ion-icon name="people" class="text-2xl"></ion-icon>
+                                    </div>
+                                    <h3 class="text-xl font-semibold">虚拟医患交互</h3>
+                                </div>
+                                <p class="text-blue-100 mb-4">通过混合现实技术创建身临其境的医患交流环境，医生可以通过3D模型进行更直观的健康问题解释。</p>
+                                <div class="mb-3 relative">
+                                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
+                                    <div class="relative z-10 p-4">
+                                        <div class="glassmorphism p-3 rounded-xl inline-block mb-2">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 bg-white/20 rounded-full mr-2"></div>
+                                                <div>
+                                                    <p class="text-xs text-white/80">张医生</p>
+                                                    <p class="text-xs text-white">请看这个3D模型，您的膝关节问题在这个位置</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <button class="bg-white/20 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-sm">缩放模型</button>
+                                            <button class="bg-white/20 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-sm">旋转查看</button>
+                                            <button class="bg-white/20 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-sm">标记位置</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目总结 -->
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-6 text-center">项目总结</h2>
+            <div class="bg-white rounded-xl p-8 shadow-lg">
+                <h3 class="text-2xl font-semibold mb-4">健康医疗VisionOS应用优势</h3>
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
+                            <ion-icon name="eye-outline" class="text-xl"></ion-icon>
+                        </div>
+                        <h4 class="text-xl font-medium mb-2 text-blue-700">沉浸式体验</h4>
+                        <p class="text-gray-600">通过VisionOS的混合现实技术，为用户提供前所未有的健身训练和医疗咨询体验，让抽象的健康数据变得可视化、直观。</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-4">
+                            <ion-icon name="analytics-outline" class="text-xl"></ion-icon>
+                        </div>
+                        <h4 class="text-xl font-medium mb-2 text-purple-700">精准分析</h4>
+                        <p class="text-gray-600">利用空间计算能力，实现更精准的运动姿态识别和健康数据分析，为用户提供个性化的健康建议和训练方案。</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
+                            <ion-icon name="people-outline" class="text-xl"></ion-icon>
+                        </div>
+                        <h4 class="text-xl font-medium mb-2 text-green-700">连接增强</h4>
+                        <p class="text-gray-600">打破医患交流和健身指导的物理限制，通过虚拟空间实现更有效的远程医疗服务和专业健身指导。</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-semibold mb-4">未来发展方向</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 flex-shrink-0">
+                            <ion-icon name="trending-up-outline"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-medium text-gray-800">AI辅助诊断与训练</h4>
+                            <p class="text-gray-600">进一步整合人工智能技术，提供更智能的健康问题预警和训练计划调整，实现个性化预防医学。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 flex-shrink-0">
+                            <ion-icon name="git-network-outline"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-medium text-gray-800">多设备生态整合</h4>
+                            <p class="text-gray-600">与Apple Watch、iPhone等设备深度整合，构建完整的健康数据生态，实现全方位健康管理。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 flex-shrink-0">
+                            <ion-icon name="earth-outline"></ion-icon>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-medium text-gray-800">全球医疗资源接入</h4>
+                            <p class="text-gray-600">接入全球医疗资源库，让用户能够获取世界各地的专业医疗建议和最新健康研究成果。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">健康医疗</h2>
+            <p class="text-gray-400 mb-6">VisionOS应用原型设计</p>
+            <p class="text-sm text-gray-500">© 2023 健康医疗团队 版权所有</p>
+        </div>
+    </footer>
+</body>
+</html> 
