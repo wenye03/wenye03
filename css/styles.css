@@ -1,0 +1,131 @@
+/* 健康助手应用样式表 */
+/* 补充Tailwind CSS的自定义样式 */
+
+/* 自定义颜色变量 */
+:root {
+    --primary-color: #4f46e5; /* indigo-600 */
+    --primary-light: #e0e7ff; /* indigo-100 */
+    --secondary-color: #3b82f6; /* blue-500 */
+    --success-color: #10b981; /* green-500 */
+    --warning-color: #f59e0b; /* amber-500 */
+    --danger-color: #ef4444; /* red-500 */
+    --gray-light: #f9fafb; /* gray-50 */
+    --gray-medium: #e5e7eb; /* gray-200 */
+    --gray-dark: #6b7280; /* gray-500 */
+    --text-dark: #1f2937; /* gray-800 */
+}
+
+/* 全局样式 */
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--gray-light);
+}
+
+/* 自定义动画效果 */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse-custom {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 数据卡片悬停效果 */
+.data-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 进度条动画 */
+.progress-animate {
+    transition: width 1s ease-in-out;
+}
+
+/* 自定义按钮样式 */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca; /* indigo-700 */
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--gray-medium);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-light);
+}
+
+/* 媒体查询 - 响应式调整 */
+@media (max-width: 768px) {
+    .prototype {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
+/* 图表样式 */
+.chart-container {
+    position: relative;
+    margin: 20px auto;
+}
+
+/* 数据标签样式 */
+.data-label {
+    font-size: 0.75rem;
+    color: var(--gray-dark);
+}
+
+.data-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* 底部导航栏激活状态 */
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--gray-medium);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--gray-dark);
+}

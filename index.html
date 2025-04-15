@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康助手 - 医疗与健身App原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 添加本地CSS引用 -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .prototype {
+            width: 1280px;
+            height: 720px;
+            margin: 30px auto;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .screen-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-3xl font-bold text-center mb-8 text-indigo-800">健康助手 - 医疗与健身App原型设计</h1>
+    
+    <!-- 1. 欢迎/登录页面 -->
+    <h2 class="screen-title">1. 欢迎/登录页面</h2>
+    <div class="prototype bg-gradient-to-br from-indigo-500 to-blue-600">
+        <div class="flex flex-col h-full justify-between p-8">
+            <div class="text-center mt-20">
+                <div class="bg-white rounded-full w-24 h-24 flex items-center justify-center mx-auto shadow-lg">
+                    <span class="material-icons text-5xl text-indigo-600">favorite</span>
+                </div>
+                <h1 class="text-5xl font-bold text-white mt-6">健康助手</h1>
+                <p class="text-xl text-white opacity-90 mt-3">您的个人健康管理专家</p>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 max-w-md mx-auto w-full">
+                <h2 class="text-2xl font-semibold text-white mb-6">登录您的账户</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-white mb-2">手机号</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="请输入手机号">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white mb-2">密码</label>
+                        <input type="password" class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="请输入密码">
+                    </div>
+                    
+                    <button class="w-full bg-white text-indigo-600 py-3 rounded-xl font-semibold text-lg hover:bg-opacity-90 transition-all">登录</button>
+                    
+                    <div class="flex justify-between text-white">
+                        <a href="#" class="opacity-80 hover:opacity-100">忘记密码?</a>
+                        <a href="#" class="opacity-80 hover:opacity-100">注册新账户</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 主页/仪表盘 -->
+    <h2 class="screen-title">2. 主页/仪表盘</h2>
+    <div class="prototype bg-gray-50">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-gray-200">
+            <div class="flex items-center">
+                <span class="material-icons text-indigo-600 mr-2">favorite</span>
+                <h1 class="text-xl font-bold text-indigo-600">健康助手</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-gray-500 mr-4">notifications</span>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <span class="font-semibold text-indigo-600">张</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="p-6">
+            <!-- 欢迎区 -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">你好，张先生</h2>
+                    <p class="text-gray-600">今天是个保持健康的好日子！</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-600">2023年10月15日</p>
+                    <p class="text-indigo-600 font-medium">星期日</p>
+                </div>
+            </div>
+            
+            <!-- 健康数据卡片 -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3">
+                            <span class="material-icons text-red-500">favorite</span>
+                        </div>
+                        <span class="text-gray-700">心率</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-2xl font-bold">72</span>
+                        <span class="text-gray-500 ml-1">BPM</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <span class="material-icons text-blue-500">local_fire_department</span>
+                        </div>
+                        <span class="text-gray-700">卡路里</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-2xl font-bold">1,248</span>
+                        <span class="text-gray-500 ml-1">千卡</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <span class="material-icons text-green-500">directions_walk</span>
+                        </div>
+                        <span class="text-gray-700">步数</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-2xl font-bold">8,546</span>
+                        <span class="text-gray-500 ml-1">步</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                            <span class="material-icons text-purple-500">bedtime</span>
+                        </div>
+                        <span class="text-gray-700">睡眠</span>
+                    </div>
+                    <div class="flex items-end">
+                        <span class="text-2xl font-bold">7.5</span>
+                        <span class="text-gray-500 ml-1">小时</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 今日活动 -->
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <h3 class="text-lg font-semibold mb-4">今日活动</h3>
+                <div class="relative">
+                    <div class="h-16 bg-gray-100 rounded-lg overflow-hidden">
+                        <div class="h-full bg-indigo-500 w-2/3 rounded-lg"></div>
+                    </div>
+                    <div class="absolute top-0 left-0 w-full h-full flex items-center px-4">
+                        <div class="flex justify-between w-full text-sm">
+                            <span class="font-medium text-white">6,500 / 10,000 步</span>
+                            <span class="font-medium text-gray-600">65%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 快速访问 -->
+            <h3 class="text-lg font-semibold mb-3">快速访问</h3>
+            <div class="grid grid-cols-5 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-indigo-600">monitor_heart</span>
+                    </div>
+                    <span class="block mt-2 text-sm text-gray-700">健康报告</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-green-600">fitness_center</span>
+                    </div>
+                    <span class="block mt-2 text-sm text-gray-700">运动计划</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-amber-600">restaurant</span>
+                    </div>
+                    <span class="block mt-2 text-sm text-gray-700">饮食记录</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-red-600">medication</span>
+                    </div>
+                    <span class="block mt-2 text-sm text-gray-700">药物提醒</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-blue-600">event_available</span>
+                    </div>
+                    <span class="block mt-2 text-sm text-gray-700">预约管理</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 w-[1280px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between">
+            <div class="flex flex-col items-center text-indigo-600">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">insights</span>
+                <span class="text-xs mt-1">数据</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">calendar_today</span>
+                <span class="text-xs mt-1">计划</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">medical_services</span>
+                <span class="text-xs mt-1">医疗</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 健康数据页面 -->
+    <h2 class="screen-title">3. 健康数据页面</h2>
+    <div class="prototype bg-gray-50">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-gray-200">
+            <div class="flex items-center">
+                <span class="material-icons text-indigo-600 mr-2">favorite</span>
+                <h1 class="text-xl font-bold text-indigo-600">健康助手</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-gray-500 mr-4">notifications</span>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <span class="font-semibold text-indigo-600">张</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">健康数据</h2>
+                <div class="flex items-center space-x-2">
+                    <button class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">日</button>
+                    <button class="px-3 py-1 bg-indigo-600 text-white rounded-full text-sm">周</button>
+                    <button class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">月</button>
+                    <button class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">年</button>
+                </div>
+            </div>
+            
+            <!-- 图表区域 -->
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">心率数据</h3>
+                    <span class="text-indigo-600 text-sm font-medium">查看详情</span>
+                </div>
+                
+                <!-- 心率图表（模拟） -->
+                <div class="h-60 w-full relative">
+                    <div class="absolute bottom-0 w-full border-b border-gray-200"></div>
+                    <!-- 模拟波形图 -->
+                    <div class="absolute bottom-12 left-0 w-full h-32">
+                        <svg viewBox="0 0 1000 100" class="w-full h-full" preserveAspectRatio="none">
+                            <path d="M0,50 Q50,30 100,50 T200,50 T300,20 T400,50 T500,80 T600,50 T700,30 T800,50 T900,40 T1000,50" fill="none" stroke="#6366F1" stroke-width="3"></path>
+                        </svg>
+                    </div>
+                    
+                    <!-- 标记点 -->
+                    <div class="absolute bottom-44 left-1/3 transform -translate-x-1/2">
+                        <div class="w-4 h-4 bg-indigo-600 rounded-full"></div>
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-indigo-600 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
+                            最高: 85 BPM
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-12 left-2/3 transform -translate-x-1/2">
+                        <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-red-500 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
+                            最低: 62 BPM
+                        </div>
+                    </div>
+                    
+                    <!-- X轴标签 -->
+                    <div class="absolute bottom-0 left-0 w-full flex justify-between text-xs text-gray-500">
+                        <span>周一</span>
+                        <span>周二</span>
+                        <span>周三</span>
+                        <span>周四</span>
+                        <span>周五</span>
+                        <span>周六</span>
+                        <span>周日</span>
+                    </div>
+                </div>
+                
+                <!-- 统计数据 -->
+                <div class="grid grid-cols-3 gap-4 mt-6">
+                    <div class="text-center">
+                        <p class="text-gray-500 text-sm">平均心率</p>
+                        <p class="text-xl font-bold text-gray-800">72 <span class="text-sm font-normal text-gray-500">BPM</span></p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-500 text-sm">最高心率</p>
+                        <p class="text-xl font-bold text-gray-800">85 <span class="text-sm font-normal text-gray-500">BPM</span></p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-500 text-sm">最低心率</p>
+                        <p class="text-xl font-bold text-gray-800">62 <span class="text-sm font-normal text-gray-500">BPM</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 步数统计 -->
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">步数统计</h3>
+                    <span class="text-indigo-600 text-sm font-medium">查看详情</span>
+                </div>
+                
+                <!-- 步数图表（模拟） -->
+                <div class="h-40 flex items-end justify-between">
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-3/4 bg-indigo-500 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周一</span>
+                        <span class="text-xs font-semibold">7.5k</span>
+                    </div>
+                    
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-1/2 bg-indigo-500 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周二</span>
+                        <span class="text-xs font-semibold">5k</span>
+                    </div>
+                    
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-4/5 bg-indigo-500 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周三</span>
+                        <span class="text-xs font-semibold">8k</span>
+                    </div>
+                    
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-3/5 bg-indigo-500 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周四</span>
+                        <span class="text-xs font-semibold">6k</span>
+                    </div>
+                    
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-2/3 bg-indigo-500 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周五</span>
+                        <span class="text-xs font-semibold">6.5k</span>
+                    </div>
+                    
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-4/5 bg-indigo-600 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周六</span>
+                        <span class="text-xs font-semibold text-indigo-600">8k</span>
+                    </div>
+                    
+                    <div class="w-12 flex flex-col items-center">
+                        <div class="h-20 w-8 bg-indigo-200 rounded-t-lg relative overflow-hidden">
+                            <div class="absolute bottom-0 w-full h-full bg-indigo-600 rounded-t-lg"></div>
+                        </div>
+                        <span class="mt-2 text-xs text-gray-500">周日</span>
+                        <span class="text-xs font-semibold text-indigo-600">10k</span>
+                    </div>
+                </div>
+                
+                <!-- 周统计 -->
+                <div class="mt-6 flex justify-between items-center border-t border-gray-100 pt-4">
+                    <div>
+                        <p class="text-gray-500 text-sm">本周总步数</p>
+                        <p class="text-xl font-bold text-gray-800">51,000 <span class="text-sm font-normal text-gray-500">步</span></p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">平均每日</p>
+                        <p class="text-xl font-bold text-gray-800">7,285 <span class="text-sm font-normal text-gray-500">步</span></p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">距离目标</p>
+                        <p class="text-xl font-bold text-green-600">+1,000 <span class="text-sm font-normal text-gray-500">步</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 健康指标 -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <span class="material-icons text-blue-600">opacity</span>
+                            </div>
+                            <span class="font-medium">血氧饱和度</span>
+                        </div>
+                        <span class="text-lg font-semibold">98%</span>
+                    </div>
+                    <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-500 rounded-full" style="width: 98%"></div>
+                    </div>
+                    <p class="text-green-600 text-xs mt-2">正常范围内</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                                <span class="material-icons text-amber-600">speed</span>
+                            </div>
+                            <span class="font-medium">血压</span>
+                        </div>
+                        <span class="text-lg font-semibold">120/80</span>
+                    </div>
+                    <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-amber-500 rounded-full" style="width: 80%"></div>
+                    </div>
+                    <p class="text-green-600 text-xs mt-2">正常范围内</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 w-[1280px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between">
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center text-indigo-600">
+                <span class="material-icons">insights</span>
+                <span class="text-xs mt-1">数据</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">calendar_today</span>
+                <span class="text-xs mt-1">计划</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">medical_services</span>
+                <span class="text-xs mt-1">医疗</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 运动计划页面 -->
+    <h2 class="screen-title">4. 运动计划页面</h2>
+    <div class="prototype bg-gray-50">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-gray-200">
+            <div class="flex items-center">
+                <span class="material-icons text-indigo-600 mr-2">favorite</span>
+                <h1 class="text-xl font-bold text-indigo-600">健康助手</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-gray-500 mr-4">notifications</span>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <span class="font-semibold text-indigo-600">张</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">运动计划</h2>
+                <button class="flex items-center bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm">
+                    <span class="material-icons text-sm mr-1">add</span>
+                    添加运动
+                </button>
+            </div>
+            
+            <!-- 日历视图 -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">2023年10月</h3>
+                    <div class="flex space-x-2">
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                            <span class="material-icons">chevron_left</span>
+                        </button>
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                            <span class="material-icons">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 星期标题 -->
+                <div class="grid grid-cols-7 gap-1 mb-2">
+                    <div class="text-center text-gray-500 text-sm">日</div>
+                    <div class="text-center text-gray-500 text-sm">一</div>
+                    <div class="text-center text-gray-500 text-sm">二</div>
+                    <div class="text-center text-gray-500 text-sm">三</div>
+                    <div class="text-center text-gray-500 text-sm">四</div>
+                    <div class="text-center text-gray-500 text-sm">五</div>
+                    <div class="text-center text-gray-500 text-sm">六</div>
+                </div>
+                
+                <!-- 日历格子 -->
+                <div class="grid grid-cols-7 gap-1">
+                    <!-- 上个月的日期 -->
+                    <div class="h-16 p-1 text-center text-gray-400">
+                        <span class="text-sm">30</span>
+                    </div>
+                    
+                    <!-- 本月的日期 -->
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">1</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">2</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">3</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">4</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">5</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">6</span>
+                    </div>
+                    
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">7</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">8</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">9</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">10</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">11</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">12</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">13</span>
+                    </div>
+                    
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">14</span>
+                        <div class="mt-1 bg-green-100 rounded text-xs text-green-700 px-1">跑步</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">15</span>
+                        <div class="mt-1 bg-blue-100 rounded text-xs text-blue-700 px-1">游泳</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent border-gray-300 bg-gray-50">
+                        <span class="text-sm font-semibold">16</span>
+                        <div class="mt-1 bg-indigo-500 text-white rounded text-xs px-1">健身</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">17</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">18</span>
+                        <div class="mt-1 bg-green-100 rounded text-xs text-green-700 px-1">跑步</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">19</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">20</span>
+                        <div class="mt-1 bg-blue-100 rounded text-xs text-blue-700 px-1">游泳</div>
+                    </div>
+                    
+                    <!-- 剩余日期 -->
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">21</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">22</span>
+                        <div class="mt-1 bg-indigo-100 rounded text-xs text-indigo-700 px-1">健身</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">23</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">24</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">25</span>
+                        <div class="mt-1 bg-green-100 rounded text-xs text-green-700 px-1">跑步</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">26</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">27</span>
+                    </div>
+                    
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">28</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">29</span>
+                        <div class="mt-1 bg-blue-100 rounded text-xs text-blue-700 px-1">游泳</div>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">30</span>
+                    </div>
+                    <div class="h-16 p-1 text-center border border-transparent">
+                        <span class="text-sm">31</span>
+                    </div>
+                    <div class="h-16 p-1 text-center text-gray-400">
+                        <span class="text-sm">1</span>
+                    </div>
+                    <div class="h-16 p-1 text-center text-gray-400">
+                        <span class="text-sm">2</span>
+                    </div>
+                    <div class="h-16 p-1 text-center text-gray-400">
+                        <span class="text-sm">3</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 今日计划 -->
+            <h3 class="text-lg font-semibold mb-4">今日运动计划</h3>
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white mr-4">
+                            <span class="material-icons">fitness_center</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">健身训练</h4>
+                            <p class="text-gray-500 text-sm">上肢力量训练</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-medium">18:30</p>
+                        <p class="text-gray-500 text-sm">60分钟</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-100 pt-4 mt-2">
+                    <div class="flex items-center mb-2">
+                        <span class="material-icons text-gray-400 mr-2 text-sm">timer</span>
+                        <span class="text-gray-700 text-sm">预计消耗: 300千卡</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="material-icons text-gray-400 mr-2 text-sm">place</span>
+                        <span class="text-gray-700 text-sm">健身中心</span>
+                    </div>
+                </div>
+                
+                <div class="mt-4 flex space-x-2">
+                    <button class="flex-1 bg-indigo-600 text-white py-2 rounded-lg">开始</button>
+                    <button class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg">修改</button>
+                </div>
+            </div>
+            
+            <!-- 运动计划列表 -->
+            <h3 class="text-lg font-semibold mb-4">未来计划</h3>
+            <div class="space-y-4">
+                <!-- 计划1 -->
+                <div class="bg-white rounded-xl shadow-sm p-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mr-3">
+                            <span class="material-icons">directions_run</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">晨跑</h4>
+                            <p class="text-gray-500 text-xs">10月18日 06:30</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-4">30分钟</span>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+                
+                <!-- 计划2 -->
+                <div class="bg-white rounded-xl shadow-sm p-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+                            <span class="material-icons">pool</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">游泳</h4>
+                            <p class="text-gray-500 text-xs">10月20日 17:00</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-4">45分钟</span>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+                
+                <!-- 计划3 -->
+                <div class="bg-white rounded-xl shadow-sm p-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mr-3">
+                            <span class="material-icons">fitness_center</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">力量训练</h4>
+                            <p class="text-gray-500 text-xs">10月22日 18:30</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-4">60分钟</span>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 w-[1280px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between">
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">insights</span>
+                <span class="text-xs mt-1">数据</span>
+            </div>
+            <div class="flex flex-col items-center text-indigo-600">
+                <span class="material-icons">calendar_today</span>
+                <span class="text-xs mt-1">计划</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">medical_services</span>
+                <span class="text-xs mt-1">医疗</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. 医疗服务页面 -->
+    <h2 class="screen-title">5. 医疗服务页面</h2>
+    <div class="prototype bg-gray-50">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-gray-200">
+            <div class="flex items-center">
+                <span class="material-icons text-indigo-600 mr-2">favorite</span>
+                <h1 class="text-xl font-bold text-indigo-600">健康助手</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-gray-500 mr-4">notifications</span>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <span class="font-semibold text-indigo-600">张</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">医疗服务</h2>
+                <div class="relative">
+                    <input type="text" placeholder="搜索医院或医生" class="px-4 py-2 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-64">
+                    <span class="material-icons absolute right-3 top-2 text-gray-500">search</span>
+                </div>
+            </div>
+            
+            <!-- 我的预约 -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">我的预约</h3>
+                    <span class="text-indigo-600 text-sm font-medium">查看全部</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <div class="flex items-start">
+                        <div class="bg-indigo-600 text-white rounded-xl h-16 w-16 flex flex-col items-center justify-center mr-4 shrink-0">
+                            <span class="text-sm">十月</span>
+                            <span class="text-xl font-bold">18</span>
+                        </div>
+                        
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-semibold">体检预约</h4>
+                                <span class="text-sm text-gray-500">09:30</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-2">第一人民医院 - 体检中心</p>
+                            <div class="flex items-center">
+                                <span class="inline-block h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+                                <span class="text-green-600 text-xs">已确认</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 医疗服务 -->
+            <h3 class="text-lg font-semibold mb-4">医疗服务</h3>
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-red-600">local_hospital</span>
+                    </div>
+                    <span class="block mt-2 text-sm font-medium text-gray-700">预约门诊</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-blue-600">medical_services</span>
+                    </div>
+                    <span class="block mt-2 text-sm font-medium text-gray-700">体检预约</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-green-600">medication</span>
+                    </div>
+                    <span class="block mt-2 text-sm font-medium text-gray-700">药品配送</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mx-auto">
+                        <span class="material-icons text-amber-600">chat</span>
+                    </div>
+                    <span class="block mt-2 text-sm font-medium text-gray-700">在线问诊</span>
+                </div>
+            </div>
+            
+            <!-- 推荐医生 -->
+            <h3 class="text-lg font-semibold mb-4">推荐医生</h3>
+            <div class="mb-6 space-y-4">
+                <!-- 医生1 -->
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-200 to-indigo-100 flex items-center justify-center mr-4">
+                                <span class="material-icons text-indigo-600 text-2xl">person</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-semibold">王医生</h4>
+                                <div class="flex items-center">
+                                    <span class="material-icons text-amber-500 text-sm">star</span>
+                                    <span class="text-gray-700 text-sm ml-1">4.9</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-2">内科 · 副主任医师</p>
+                            <p class="text-gray-500 text-sm">第一人民医院</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons text-gray-400 text-sm mr-1">schedule</span>
+                            <span>可预约: 今日 15:30</span>
+                        </div>
+                        <button class="bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm">预约</button>
+                    </div>
+                </div>
+                
+                <!-- 医生2 -->
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-200 to-indigo-100 flex items-center justify-center mr-4">
+                                <span class="material-icons text-indigo-600 text-2xl">person</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <h4 class="font-semibold">李医生</h4>
+                                <div class="flex items-center">
+                                    <span class="material-icons text-amber-500 text-sm">star</span>
+                                    <span class="text-gray-700 text-sm ml-1">4.8</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-2">心内科 · 主任医师</p>
+                            <p class="text-gray-500 text-sm">中心医院</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="material-icons text-gray-400 text-sm mr-1">schedule</span>
+                            <span>可预约: 明日 09:00</span>
+                        </div>
+                        <button class="bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm">预约</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 附近医院 -->
+            <h3 class="text-lg font-semibold mb-4">附近医院</h3>
+            <div class="space-y-4">
+                <!-- 医院1 -->
+                <div class="bg-white rounded-xl shadow-sm p-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 mr-3">
+                            <span class="material-icons">local_hospital</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">第一人民医院</h4>
+                            <p class="text-gray-500 text-xs">1.2公里 · 三级甲等</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-4">全科齐全</span>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+                
+                <!-- 医院2 -->
+                <div class="bg-white rounded-xl shadow-sm p-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 mr-3">
+                            <span class="material-icons">local_hospital</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">中心医院</h4>
+                            <p class="text-gray-500 text-xs">2.5公里 · 三级甲等</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-4">全科齐全</span>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 w-[1280px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between">
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">insights</span>
+                <span class="text-xs mt-1">数据</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">calendar_today</span>
+                <span class="text-xs mt-1">计划</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">medical_services</span>
+                <span class="text-xs mt-1">医疗</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. 个人中心页面 -->
+    <h2 class="screen-title">6. 个人中心页面</h2>
+    <div class="prototype bg-gray-50">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-gray-200">
+            <div class="flex items-center">
+                <span class="material-icons text-indigo-600 mr-2">favorite</span>
+                <h1 class="text-xl font-bold text-indigo-600">健康助手</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-gray-500 mr-4">settings</span>
+                <span class="material-icons text-gray-500">notifications</span>
+            </div>
+        </div>
+        
+        <!-- 用户信息 -->
+        <div class="bg-gradient-to-r from-indigo-600 to-blue-500 p-6">
+            <div class="flex items-center">
+                <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center mr-4 shrink-0">
+                    <span class="material-icons text-4xl text-indigo-600">person</span>
+                </div>
+                <div class="text-white">
+                    <h2 class="text-xl font-bold">张先生</h2>
+                    <p class="opacity-80 text-sm">ID: 10086421</p>
+                    <div class="flex items-center mt-2">
+                        <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full">健康会员</span>
+                        <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full ml-2">运动达人</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 健康档案卡片 -->
+        <div class="mx-6 -mt-5 bg-white rounded-xl shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center">
+                <h3 class="font-semibold text-gray-800">健康档案</h3>
+                <span class="text-indigo-600 text-sm">查看详情</span>
+            </div>
+            <div class="flex justify-between mt-4">
+                <div class="text-center">
+                    <p class="text-gray-500 text-xs">身高</p>
+                    <p class="font-semibold text-gray-800">178<span class="text-xs font-normal text-gray-500">cm</span></p>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-500 text-xs">体重</p>
+                    <p class="font-semibold text-gray-800">68<span class="text-xs font-normal text-gray-500">kg</span></p>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-500 text-xs">BMI</p>
+                    <p class="font-semibold text-gray-800">21.5</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-500 text-xs">血型</p>
+                    <p class="font-semibold text-gray-800">A</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 功能模块 -->
+        <div class="px-6 mb-6">
+            <div class="grid grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-2">
+                        <span class="material-icons text-purple-600">history</span>
+                    </div>
+                    <span class="text-sm text-gray-700">健康记录</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                        <span class="material-icons text-blue-600">list_alt</span>
+                    </div>
+                    <span class="text-sm text-gray-700">体检报告</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-2">
+                        <span class="material-icons text-amber-600">favorite</span>
+                    </div>
+                    <span class="text-sm text-gray-700">健康评估</span>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
+                        <span class="material-icons text-green-600">groups</span>
+                    </div>
+                    <span class="text-sm text-gray-700">家庭成员</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 菜单列表 -->
+        <div class="px-6">
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <div class="flex items-center">
+                            <span class="material-icons text-indigo-600 mr-3">card_membership</span>
+                            <span class="text-gray-700">我的会员</span>
+                        </div>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+                
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <div class="flex items-center">
+                            <span class="material-icons text-indigo-600 mr-3">credit_card</span>
+                            <span class="text-gray-700">支付管理</span>
+                        </div>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+                
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <div class="flex items-center">
+                            <span class="material-icons text-indigo-600 mr-3">medication</span>
+                            <span class="text-gray-700">我的药品</span>
+                        </div>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+                
+                <div class="border-b border-gray-100">
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <div class="flex items-center">
+                            <span class="material-icons text-indigo-600 mr-3">message</span>
+                            <span class="text-gray-700">我的消息</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="bg-red-500 text-white text-xs px-1.5 rounded-full mr-2">3</span>
+                            <span class="material-icons text-gray-400">chevron_right</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <div class="flex items-center">
+                            <span class="material-icons text-indigo-600 mr-3">help</span>
+                            <span class="text-gray-700">帮助与反馈</span>
+                        </div>
+                        <span class="material-icons text-gray-400">chevron_right</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="flex justify-between items-center px-4 py-3">
+                    <div class="flex items-center">
+                        <span class="material-icons text-indigo-600 mr-3">settings</span>
+                        <span class="text-gray-700">设置</span>
+                    </div>
+                    <span class="material-icons text-gray-400">chevron_right</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 w-[1280px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between">
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">insights</span>
+                <span class="text-xs mt-1">数据</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">calendar_today</span>
+                <span class="text-xs mt-1">计划</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">medical_services</span>
+                <span class="text-xs mt-1">医疗</span>
+            </div>
+            <div class="flex flex-col items-center text-indigo-600">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. 饮食记录页面 -->
+    <h2 class="screen-title">7. 饮食记录页面</h2>
+    <div class="prototype bg-gray-50">
+        <!-- 顶部导航栏 -->
+        <div class="bg-white px-6 py-4 flex justify-between items-center border-b border-gray-200">
+            <div class="flex items-center">
+                <span class="material-icons text-indigo-600 mr-2">favorite</span>
+                <h1 class="text-xl font-bold text-indigo-600">健康助手</h1>
+            </div>
+            <div class="flex items-center">
+                <span class="material-icons text-gray-500 mr-4">notifications</span>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <span class="font-semibold text-indigo-600">张</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">饮食记录</h2>
+                <button class="flex items-center bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm">
+                    <span class="material-icons text-sm mr-1">add</span>
+                    添加饮食
+                </button>
+            </div>
+            
+            <!-- 今日摄入 -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">今日摄入</h3>
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500">10月16日</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-4 mb-4">
+                    <div class="bg-gray-50 p-3 rounded-xl">
+                        <p class="text-gray-500 text-sm mb-1">卡路里</p>
+                        <div class="flex justify-between items-end">
+                            <p class="text-xl font-bold text-gray-800">1248</p>
+                            <p class="text-sm text-gray-500">/ 2000 千卡</p>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full mt-2">
+                            <div class="h-full bg-indigo-500 rounded-full" style="width: 62%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 rounded-xl">
+                        <p class="text-gray-500 text-sm mb-1">蛋白质</p>
+                        <div class="flex justify-between items-end">
+                            <p class="text-xl font-bold text-gray-800">48</p>
+                            <p class="text-sm text-gray-500">/ 80 克</p>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full mt-2">
+                            <div class="h-full bg-green-500 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 rounded-xl">
+                        <p class="text-gray-500 text-sm mb-1">碳水化合物</p>
+                        <div class="flex justify-between items-end">
+                            <p class="text-xl font-bold text-gray-800">185</p>
+                            <p class="text-sm text-gray-500">/ 250 克</p>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full mt-2">
+                            <div class="h-full bg-blue-500 rounded-full" style="width: 74%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 rounded-xl">
+                        <p class="text-gray-500 text-sm mb-1">脂肪</p>
+                        <div class="flex justify-between items-end">
+                            <p class="text-xl font-bold text-gray-800">42</p>
+                            <p class="text-sm text-gray-500">/ 70 克</p>
+                        </div>
+                        <div class="w-full h-1.5 bg-gray-200 rounded-full mt-2">
+                            <div class="h-full bg-amber-500 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-xl">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-medium">营养成分比例</h4>
+                        <span class="text-indigo-600 text-xs">推荐比例: 20% 蛋白质 / 50% 碳水 / 30% 脂肪</span>
+                    </div>
+                    
+                    <div class="mt-3 h-4 bg-gray-200 rounded-full overflow-hidden flex">
+                        <div class="h-full bg-green-500" style="width: 20%"></div>
+                        <div class="h-full bg-blue-500" style="width: 53%"></div>
+                        <div class="h-full bg-amber-500" style="width: 27%"></div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-2 text-xs">
+                        <div class="flex items-center">
+                            <span class="block w-2 h-2 rounded-full bg-green-500 mr-1"></span>
+                            <span class="text-gray-500">蛋白质 20%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="block w-2 h-2 rounded-full bg-blue-500 mr-1"></span>
+                            <span class="text-gray-500">碳水 53%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="block w-2 h-2 rounded-full bg-amber-500 mr-1"></span>
+                            <span class="text-gray-500">脂肪 27%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 今日餐食 -->
+            <h3 class="text-lg font-semibold mb-4">今日餐食</h3>
+            
+            <!-- 早餐 -->
+            <div class="bg-white rounded-xl shadow-sm p-4 mb-4">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 mr-3">
+                            <span class="material-icons">breakfast_dining</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">早餐</h4>
+                            <p class="text-gray-500 text-xs">07:30</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-2">420千卡</span>
+                        <span class="material-icons text-gray-400">expand_more</span>
+                    </div>
+                </div>
+                
+                <div class="pl-13 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">rice_bowl</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">燕麦粥</span>
+                        </div>
+                        <span class="text-sm text-gray-500">200千卡</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">egg</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">煮鸡蛋 x2</span>
+                        </div>
+                        <span class="text-sm text-gray-500">140千卡</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">breakfast_dining</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">全麦面包片</span>
+                        </div>
+                        <span class="text-sm text-gray-500">80千卡</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 午餐 -->
+            <div class="bg-white rounded-xl shadow-sm p-4 mb-4">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mr-3">
+                            <span class="material-icons">lunch_dining</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">午餐</h4>
+                            <p class="text-gray-500 text-xs">12:15</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-500 text-sm mr-2">568千卡</span>
+                        <span class="material-icons text-gray-400">expand_more</span>
+                    </div>
+                </div>
+                
+                <div class="pl-13 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">rice_bowl</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">糙米饭</span>
+                        </div>
+                        <span class="text-sm text-gray-500">200千卡</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">restaurant</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">清蒸鲈鱼</span>
+                        </div>
+                        <span class="text-sm text-gray-500">168千卡</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">dinner_dining</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">西兰花炒蘑菇</span>
+                        </div>
+                        <span class="text-sm text-gray-500">120千卡</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="material-icons text-gray-500 text-sm">soup_kitchen</span>
+                            </div>
+                            <span class="text-gray-700 text-sm">番茄蛋汤</span>
+                        </div>
+                        <span class="text-sm text-gray-500">80千卡</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 晚餐 -->
+            <div class="bg-white rounded-xl shadow-sm p-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+                            <span class="material-icons">dinner_dining</span>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">晚餐</h4>
+                            <p class="text-gray-500 text-xs">18:30</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="material-icons text-indigo-600 mr-1">add_circle</span>
+                        <span class="text-indigo-600 text-sm">添加</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 w-[1280px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between">
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">insights</span>
+                <span class="text-xs mt-1">数据</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">calendar_today</span>
+                <span class="text-xs mt-1">计划</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">medical_services</span>
+                <span class="text-xs mt-1">医疗</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-500">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
